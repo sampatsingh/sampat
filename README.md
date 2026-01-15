@@ -45,16 +45,17 @@ portfolio/
 
 No build process required. This project uses standard web technologies.
 
-1.  **Clone the repository**:
-    ```bash
-    git clone https://github.com/sampatsingh/portfolio.git
-    ```
-2.  **Open locally**:
-    Simply open `index.html` in your preferred browser.
-    ```bash
-    # Functions perfectly via file:// protocol
-    open index.html
-    ```
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/sampatsingh/portfolio.git
+   ```
+
+2. **Open locally**:
+   Simply open `index.html` in your preferred browser.
+   ```bash
+   # Functions perfectly via file:// protocol
+   open index.html
+   ```
 
 ## 🎨 Design System
 
@@ -78,11 +79,11 @@ The project uses a CSS Variable system for consistency:
 
 Contributions are welcome! Please examine `CONTRIBUTING.md` for coding standards.
 
-1.  Fork the Project
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the Branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## 📄 License
 
@@ -92,8 +93,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 **Sampat Singh**  
 Full Stack AI Engineer  
-Email: sampatrathore.dev@gmail.com  
+Email: [sampatrathore.dev@gmail.com](mailto:sampatrathore.dev@gmail.com)  
 Linktree: [linktr.ee/sampatsingh](https://linktr.ee/sampatsingh)
 
 ---
+
 *© 2026 Sampat Singh. All Rights Reserved.*
