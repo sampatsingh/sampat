@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function updateThemeIcon(isDark) {
     if (!themeIcon) return;
-    themeIcon.textContent = isDark ? '🌙' : '☀️';
+    themeIcon.innerHTML = isDark ? '<i class="ri-moon-line"></i>' : '<i class="ri-sun-line"></i>';
   }
 
   // ===================================

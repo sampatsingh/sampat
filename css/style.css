@@ -174,7 +174,7 @@ body.dark-mode {
 }
 
 .theme-toggle:hover {
-  transform: rotate(15deg) scale(1.1);
+  transform: rotate(15deg) scale(1.025);
   background-color: var(--color-bg-secondary);
 }
 
@@ -195,7 +195,7 @@ body.dark-mode {
 .projects-grid .project-card:hover {
   filter: blur(0) grayscale(0);
   opacity: 1;
-  transform: scale(1.05);
+  transform: scale(1.025);
   z-index: 10;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   border-color: var(--color-accent);
@@ -959,7 +959,7 @@ a:focus-visible {
   background: var(--gradient-accent);
   color: white;
   border-color: var(--color-accent);
-  transform: scale(1.05);
+  transform: scale(1.025);
 }
 
 /* ===================================
@@ -1017,7 +1017,7 @@ a:focus-visible {
 }
 
 .service-card:hover .service-icon {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.025) rotate(5deg);
 }
 
 .service-card h3 {
@@ -1321,6 +1321,13 @@ a:focus-visible {
   line-height: var(--line-height-relaxed);
 }
 
+.footer-heading {
+  font-weight: 600;
+  margin-bottom: var(--spacing-4);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+}
+
 .footer-links {
   display: flex;
   flex-direction: column;
@@ -1349,6 +1356,9 @@ a:focus-visible {
 }
 
 @media (max-width: 767px) {
+  .footer-links {
+    align-items: center;
+  }
   .footer-social {
     justify-content: center;
   }
@@ -1360,16 +1370,18 @@ a:focus-visible {
   justify-content: center;
   width: 44px;
   height: 44px;
-  background-color: var(--color-gray-800);
-  border-radius: var(--radius-lg);
+  background-color: transparent;
+  border-radius: 50%;
   font-size: var(--font-size-xl);
   transition: all var(--transition-base);
-  border: 1px solid var(--color-gray-700);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
 }
 
 .social-link:hover {
   background: var(--gradient-accent);
-  border-color: var(--color-accent);
+  border-color: transparent;
+  color: white;
   transform: translateY(-3px);
   box-shadow: var(--shadow-glow);
 }
@@ -1542,7 +1554,7 @@ html {
 }
 
 .profile-photo:hover {
-  transform: scale(1.05) rotate(2deg);
+  transform: scale(1.025) rotate(2deg);
 }
 
 .experience-badge {
