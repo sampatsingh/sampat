@@ -204,8 +204,8 @@ body.dark-mode {
 /* Glassmorphism Utilities */
 .glass {
   background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -408,6 +408,10 @@ a:focus-visible {
   transition: all var(--transition-base);
 }
 
+.header > .container {
+  height: 100%;
+}
+
 .header.scrolled {
   background-color: rgba(255, 255, 255, 0.95);
   border-bottom-color: var(--color-border);
@@ -420,6 +424,12 @@ a:focus-visible {
   align-items: center;
   height: 100%;
   position: relative;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
 }
 
 .logo {
@@ -488,7 +498,9 @@ a:focus-visible {
   .nav {
     position: static;
     height: auto;
+    height: auto;
     flex-direction: row;
+    align-items: center;
     gap: var(--spacing-6);
     background-color: transparent;
     backdrop-filter: none;
@@ -580,8 +592,8 @@ a:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-3) var(--spacing-6);
-  font-size: var(--font-size-base);
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   border-radius: var(--radius-lg);
   border: 2px solid transparent;
@@ -1078,6 +1090,9 @@ a:focus-visible {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 140px;
   gap: var(--spacing-2);
   padding: var(--spacing-4);
   background-color: var(--color-surface);
@@ -1438,10 +1453,52 @@ a:focus-visible {
 .service-card,
 .tech-item,
 .btn {
-  will-change: transform;
+  will-change: transform, opacity;
   transform: translateZ(0);
   backface-visibility: hidden;
 }
+
+/* ===================================
+   ANIMATIONS & VISUAL POLISH
+   =================================== */
+
+/* Universal Reveal Class */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered Delays for Grid Items */
+.project-card:nth-child(1), .service-card:nth-child(1), .tech-item:nth-child(1) { transition-delay: 100ms; }
+.project-card:nth-child(2), .service-card:nth-child(2), .tech-item:nth-child(2) { transition-delay: 200ms; }
+.project-card:nth-child(3), .service-card:nth-child(3), .tech-item:nth-child(3) { transition-delay: 300ms; }
+.project-card:nth-child(4), .service-card:nth-child(4), .tech-item:nth-child(4) { transition-delay: 400ms; }
+.project-card:nth-child(5), .service-card:nth-child(5), .tech-item:nth-child(5) { transition-delay: 500ms; }
+.project-card:nth-child(6), .service-card:nth-child(6), .tech-item:nth-child(6) { transition-delay: 100ms; }
+.project-card:nth-child(7), .service-card:nth-child(7), .tech-item:nth-child(7) { transition-delay: 200ms; }
+.project-card:nth-child(8), .service-card:nth-child(8), .tech-item:nth-child(8) { transition-delay: 300ms; }
+.project-card:nth-child(9), .service-card:nth-child(9), .tech-item:nth-child(9) { transition-delay: 400ms; }
+.project-card:nth-child(10), .service-card:nth-child(10), .tech-item:nth-child(10) { transition-delay: 500ms; }
+
+/* Neon Glow Effect (Dark Mode) */
+body.dark-mode .project-card:hover,
+body.dark-mode .service-card:hover {
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.3), 0 0 10px rgba(59, 130, 246, 0.1);
+  border-color: var(--color-accent);
+}
+
+/* Enhanced Section Titles */
+.section-title.reveal-on-scroll {
+  transform: translateY(20px);
+}
+
 
 /* Prevent layout shifts */
 img {
@@ -1455,4 +1512,66 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+/* Header Button Specifics */
+.btn-header {
+  /* margin-top: 0; Centered via flex */
+  padding: 0.5rem 1.25rem !important; /* Force smaller */
+  font-size: 0.85rem !important;
+}
+
+/* ===================================
+   PROFILE PHOTO STYLING
+   =================================== */
+
+.about-image-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: var(--spacing-8);
+}
+
+.profile-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--color-surface);
+  box-shadow: var(--shadow-xl);
+  transition: transform var(--transition-spring);
+}
+
+.profile-photo:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+.experience-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--gradient-accent);
+  color: white;
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  border: 4px solid var(--color-surface);
+  animation: bounce 2s infinite;
+}
+
+.badge-number {
+  display: block;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  line-height: 1;
+}
+
+.badge-text {
+  font-size: var(--font-size-xs);
+  opacity: 0.9;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }

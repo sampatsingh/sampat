@@ -306,10 +306,14 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Observe elements
   const animatedElements = document.querySelectorAll(
-    '.project-card, .service-card, .tech-category, .about-stats, .stat-item'
+    '.project-card, .service-card, .tech-category, .about-stats, .stat-item, .section-title, .section-subtitle'
   );
   
-  animatedElements.forEach(el => observer.observe(el));
+  animatedElements.forEach((el, index) => {
+    // Add reveal class for CSS transition
+    el.classList.add('reveal-on-scroll');
+    observer.observe(el);
+  });
   
   // ===================================
   // DYNAMIC COPYRIGHT YEAR
