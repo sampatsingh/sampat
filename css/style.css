@@ -122,12 +122,106 @@
   --section-spacing: var(--spacing-16);
 }
 
-/* Desktop Overrides */
+/* Dark Mode Overrides */
+body.dark-mode {
+  --color-primary: #f8fafc;          /* Slate 50 */
+  --color-primary-light: #f1f5f9;    /* Slate 100 */
+  --color-primary-dark: #ffffff;     /* White */
+  
+  --color-gray-50: #0f172a;
+  --color-gray-100: #1e293b;
+  --color-gray-200: #334155;
+  --color-gray-300: #475569;
+  --color-gray-400: #64748b;
+  --color-gray-500: #94a3b8;
+  --color-gray-600: #cbd5e1;
+  --color-gray-700: #e2e8f0;
+  --color-gray-800: #f1f5f9;
+  --color-gray-900: #f8fafc;
+  
+  --color-bg-primary: #0f172a;       /* Dark background */
+  --color-bg-secondary: #020617;     /* Darker background */
+  --color-bg-tertiary: #1e293b;
+  --color-surface: #1e293b;          /* Dark surface */
+  
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  
+  --color-border: #334155;
+  --color-border-light: #1e293b;
+  
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+  
+  --gradient-mesh: radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                   radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-2);
+  margin-right: var(--spacing-2);
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: transform var(--transition-base);
+  border-radius: var(--radius-full);
+}
+
+.theme-toggle:hover {
+  transform: rotate(15deg) scale(1.1);
+  background-color: var(--color-bg-secondary);
+}
+
 @media (min-width: 768px) {
   :root {
     --header-height: 72px;
     --section-spacing: var(--spacing-24);
   }
+}
+
+/* Gallery Spotlight Effect */
+.projects-grid:hover .project-card {
+  filter: blur(4px) grayscale(0.6);
+  opacity: 0.6;
+  transform: scale(0.98);
+}
+
+.projects-grid .project-card:hover {
+  filter: blur(0) grayscale(0);
+  opacity: 1;
+  transform: scale(1.05);
+  z-index: 10;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border-color: var(--color-accent);
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .glass {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Header Dark Mode Update */
+body.dark-mode .header {
+  background-color: rgba(15, 23, 42, 0.8);
+  border-bottom-color: var(--color-border);
+}
+
+body.dark-mode .header.scrolled {
+  background-color: rgba(15, 23, 42, 0.95);
 }
 
 /* ===================================
@@ -565,7 +659,7 @@ a:focus-visible {
   display: flex;
   align-items: center;
   padding-top: var(--header-height);
-  background: linear-gradient(135deg, #ffffff 0%, var(--color-bg-secondary) 100%);
+  background: linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%);
   position: relative;
   overflow: hidden;
 }
@@ -1162,9 +1256,10 @@ a:focus-visible {
    =================================== */
 
 .footer {
-  background: linear-gradient(135deg, var(--color-gray-900), var(--color-gray-800));
-  color: var(--color-gray-300);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-secondary);
   padding: var(--spacing-12) 0 var(--spacing-6);
+  border-top: 1px solid var(--color-border);
   position: relative;
   overflow: hidden;
 }
@@ -1176,7 +1271,7 @@ a:focus-visible {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
 }
 
 .footer-content {
@@ -1230,7 +1325,7 @@ a:focus-visible {
 }
 
 .footer-link:hover {
-  color: white;
+  color: var(--color-accent);
 }
 
 .footer-social {

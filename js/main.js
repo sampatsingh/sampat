@@ -132,6 +132,39 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   // ===================================
+  // THEME TOGGLE
+  // ===================================
+  
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeIcon = themeToggle ? themeToggle.querySelector('.theme-icon') : null;
+  const body = document.body;
+  
+  // Check local storage or system preference
+  const savedTheme = localStorage.getItem('theme');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+    body.classList.add('dark-mode');
+    updateThemeIcon(true);
+  } else {
+    updateThemeIcon(false);
+  }
+  
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const isDark = body.classList.contains('dark-mode');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateThemeIcon(isDark);
+    });
+  }
+  
+  function updateThemeIcon(isDark) {
+    if (!themeIcon) return;
+    themeIcon.textContent = isDark ? '🌙' : '☀️';
+  }
+
+  // ===================================
   // CONTACT FORM VALIDATION
   // ===================================
   
@@ -155,37 +188,29 @@ document.addEventListener('DOMContentLoaded', function() {
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
-      // Clear all errors
-      clearAllErrors();
+      const name = document.getElementById('name').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
       
-      // Validate all fields
-      let isValid = true;
-      formInputs.forEach(input => {
-        if (!validateField(input)) {
-          isValid = false;
-        }
-      });
+      // Construct Mailto Link
+      const body = `Name: ${name}\n\nMessage:\n${message}`;
+      const mailtoLink = `mailto:sampatrathore.dev@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       
-      if (isValid) {
-        // Success! (You can integrate with backend here)
-        showSuccessMessage();
+      // Open Email Client
+      window.location.href = mailtoLink;
+      
+      // UI Feedback
+      const btn = contactForm.querySelector('button[type="submit"]');
+      const originalText = btn.textContent;
+      btn.textContent = 'Opening Email Client...';
+      btn.disabled = true;
+      
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.disabled = false;
         contactForm.reset();
-        
-        // TODO: Integrate with backend
-        // fetch('/api/contact', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify({
-        //     name: document.getElementById('name').value,
-        //     email: document.getElementById('email').value,
-        //     subject: document.getElementById('subject').value,
-        //     message: document.getElementById('message').value
-        //   })
-        // })
-        // .then(response => response.json())
-        // .then(data => showSuccessMessage())
-        // .catch(error => showErrorMessage());
-      }
+        alert('Thank you! Your email client should have opened.');
+      }, 3000);
     });
   }
   
